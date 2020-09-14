@@ -222,9 +222,34 @@
 											<h4>Getting started</h4>
 											<p>As stated above, METAPOST has a rather steep learning curve. Making a figure is a different
 											exercise than simply pointing and clicking. A nifty document called <a href="https://hbgilmer.github.io/Files/mptut.pdf"><i>Learning METAPOST by Doing</i></a>
-										  provides a great introduction to using METAPOST by providing several compact, easy-to-do problems. In between each
+										  is a great introduction to using METAPOST by providing several compact, easy-to-do problems. In between each
 											problem is a brief description of a different aspect of the language. The solutions manual can be found <a href="https://hbgilmer.github.io/Files/mptut.pdf">here</a>.</p>
-											<h4>Making diagrams</h4>
+											<h4>Useful bits</h4>
+											<p>Getting METAPOST to do what you want it to can be a bit of a pain at times. Here are a few tricks I've found to make working with METAPOST less painful</p>
+											<h5>Diagram labels</h5>
+											<p>METAPOST has no native support for compiling text labels in LaTeX. For the sake of consistency, this can be very annoying.
+											Fortunately, extensive digging has revealed that sticking a small bit of code at the beginning of your METAPOST file makes
+											it possible to compile LaTeX labels seamlessly:
+											<pre><code>
+prologues := 3;
+outputtemplate := "%j%c.eps";
+
+verbatimtex
+%&latex
+\documentclass{amsart}
+\begin{document}
+etex
+											</code></pre>
+											<h5>FeynMP macros</h5>
+											<p>The FeynMF program (click <a href="https://hbgilmer.github.io/Files/feynmf-manual.pdf">here</a> for the manual)
+										  is a self-contained program that employs a C++ program to generate the layout of a
+											diagram and then METAFONT to draw the diagram itself. I briefly considered it alongside JaxoDraw and TiKZFeynman,
+										  but ultimately decided to learn raw METAPOST was a more flexible and useful skill. Still, it's nice to be able
+										  to call on functions that other packages have already defined. In particular, it's nice to call on FeynMF's
+										  extensive library of propagator lines. To do this, first import the package using <code>input feynmp</code>. Then
+										  call on the function by invoking <code>draw_(name of propagator)</code>; make sure you remove the parenthesis. A list of
+										  callable functions can be found on page 15 of the manual, linked above.</p>
+											<h4>Examples</h4>
 										</div>
 									</section>
 
